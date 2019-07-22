@@ -1,6 +1,5 @@
 package program;
 
-import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Logger;
 
 import javax.mail.*;
@@ -23,7 +22,7 @@ public class MailHandler extends GeneralHandlerAbstract implements ReadMailInter
     private String passWord;
     private String saveDirectory;
 
-    private MailHandler(String protocol, String host, String port, String userName, String passWord) {
+    public MailHandler(String protocol, String host, String port, String userName, String passWord) {
         this.protocol = protocol;
         this.host = host;
         this.port = port;
@@ -31,14 +30,7 @@ public class MailHandler extends GeneralHandlerAbstract implements ReadMailInter
         this.passWord = passWord;
     }
 
-    public static void main(String[] args) {
-        BasicConfigurator.configure();
-        MailHandler mailHandler = new MailHandler(Config.PROTOCOL_IMAP, Config.HOST_IMAP, Config.PORT_IMAP, Config.USER_NAME, Config.PASS);
-        mailHandler.setSaveDirectory(Config.DOWNLOAD_PATH);
-        mailHandler.readMail();
-    }
-
-    private void setSaveDirectory(String saveDirectory) {
+    public void setSaveDirectory(String saveDirectory) {
         this.saveDirectory = saveDirectory;
     }
 
